@@ -7,6 +7,7 @@
 // [Hooks] Disable= and the logs use it), name and address unchanged.
 
 #include "../callconv.hpp"
+#include "../platform/win32_types.hpp"
 #include "../original/helpers.hpp"
 #include <cstdint>
 #include <cstring>
@@ -651,8 +652,9 @@ i32 JOAN_STDCALL win_main(void* instance, void* /*prev*/, char* /*cmd*/, i32 /*s
         joan::orig::as_profiler(obj(d::g_cpu_usage))->measure_speed();  // 0x0045c8c0
         joan::orig::as_config(config)->reset();           // 0x00459e30
     }
-    u32 memory_status[8] = {};  // MEMORYSTATUS at [ebp-0x20], never read
-    import_stdcall<void>(d::iat_KERNEL32_GlobalMemoryStatus, static_cast<void*>(memory_status));  // GlobalMemoryStatus
+    MEMORYSTATUS memory_status{};
+    memory_status.dwLength = sizeof(memory_status);
+    import_stdcall<void>(d::iat_KERNEL32_GlobalMemoryStatus, &memory_status);
     if (joan::orig::arg::as<i32>(joan::orig::as_game(obj(d::g_game_a50088))->init(instance)) == 0) return 0;  // 0x004d6c50
     com_call<u32>(global<void*>(d::g_game_device), 4);  // GetAvailableTextureMem, result unused
     joan::orig::as_error_log(obj(d::g_err))->set_callback(fn::code_value(fn::error_callback_nop));               // 0x0056dd30

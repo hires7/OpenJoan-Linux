@@ -586,6 +586,8 @@ struct H {
         if (global<std::int32_t>(d::g_control_mode) != 3)
             state[5] = joan::orig::arg::as<std::uint32_t>(joan::orig::as_unit(unit)->mounted()) != 0 ? global<std::uint32_t>(d::g_a0bbec) : global<std::uint32_t>(d::g_a0bbe8);  // 0x00430190
         state[7] = joan::orig::arg::as<std::uint32_t>(joan::orig::as_unit(unit)->mounted()) != 0 ? global<std::uint32_t>(d::g_a0bbf4) : global<std::uint32_t>(d::g_a0bbf0);
+        const float follow_fov_tan = 3.0f;  // About 71.6 degrees vertical
+        std::memcpy(&state[8], &follow_fov_tan, sizeof(follow_fov_tan));
         if ((joan::orig::arg::as<std::int32_t>(joan::orig::state_differs(joan::orig::arg::mptr(static_cast<void*>(state)), joan::orig::arg::mptr(static_cast<void*>(&jo::self<jo::CameraFollow>(this)->motions->to)))) & 0xff) != 0)  // 0x0041a900
             joan::orig::as_camera_motion(jo::view<void*>(jo::self<jo::CameraFollow>(this)->motions))->start(joan::orig::arg::mptr(static_cast<void*>(&jo::self<jo::CameraFollow>(this)->camera->params)), joan::orig::arg::mptr(static_cast<void*>(state)));  // 0x00423ec0
         return 1;

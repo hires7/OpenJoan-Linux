@@ -1,0 +1,37 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "OpenJoan: Linux Debug (GDB)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/run/debug/openjoan",
+      "cwd": "${workspaceFolder}/run/debug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "stopAtEntry": false,
+      "externalConsole": false,
+      "preLaunchTask": "OpenJoan: Build and stage Debug",
+      "setupCommands": [
+        { "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "text": "-interpreter-exec console \"set debuginfod enabled off\"", "ignoreFailures": true }
+      ]
+    },
+    {
+      "name": "OpenJoan: Linux Release (GDB)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/run/release/openjoan",
+      "cwd": "${workspaceFolder}/run/release",
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "stopAtEntry": false,
+      "externalConsole": false,
+      "preLaunchTask": "OpenJoan: Build and stage Release",
+      "setupCommands": [
+        { "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "text": "-interpreter-exec console \"set debuginfod enabled off\"", "ignoreFailures": true }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,50 @@
-# OpenJoan
+# OpenJoan Linux Development
+
+This is a fork of **OpenJoan** by **H3xtyy and the upstream contributors**, based on
+**v1.0.9**. It adds a Linux x86-64 shutdown fix and a VS Code workspace for learning
+and debugging the engine. [Original OpenJoan repository](https://github.com/H3xtyy/OpenJoan) ·
+[Upstream v1.0.9 tag](https://github.com/H3xtyy/OpenJoan/tree/v1.0.9)
+
+## Changes in this fork
+
+- Fix a stack overwrite on Linux x86-64 by passing a correctly sized
+  `MEMORYSTATUS` to `GlobalMemoryStatus`. The engine previously detected the
+  damage when quitting the game.
+- Build, stage, and debug the native game with **F5** in VS Code. Debug enables
+  upstream logging, the developer menu, and the free camera. Release uses its own
+  build and runtime directories.
+- Widen Joan's follow-camera vertical field of view from the stock 45° to
+  approximately 71.6°. The value is a source-code experiment you can adjust in
+  [the follow-camera code](src/game/unknown_camctl.cpp).
+
+The fork changes began on 2026-11-25. See the
+[game development guide](GAMDEV_GUIDE.md) for setup, debugger exercises, and an
+engine reading order.
+
+## Quick start on native Linux
+
+Use a C++20 compiler (GCC 13+ or Clang 17+), CMake 3.25+ for these presets,
+Ninja, pkg-config, SDL3, OpenAL Soft, and FFmpeg development libraries. CMake
+fetches the upstream-pinned FreeType source by default. For an offline
+configuration, pass `-DFETCHCONTENT_SOURCE_DIR_FREETYPE=/path/to/FreeType` when
+configuring each preset for the first time.
+
+```sh
+cmake --preset vscode-linux-release
+cmake --build --preset vscode-linux-release
+```
+
+The executable is `build/vscode-linux-release/src/openjoan`. You need the original
+game data and an OpenGL 4.6 driver to play. Keep a separate copy of your game data
+folders under `play/` inside the clone. Start with
+[the asset setup in the guide](GAMDEV_GUIDE.md#build-run-and-debug).
+
+With Python 3, run `python3 .vscode/build_and_stage.py release` to stage the game
+under `run/release/`, then run `./run/release/openjoan` directly. For interactive
+debugging, use GDB and the recommended VS Code extensions, choose
+**OpenJoan: Linux Debug (GDB)**, and press **F5**.
+
+## About OpenJoan
 
 An open-source reimplementation of **Wars and Warriors: Joan of Arc** (Enlight Software, 2004) for 64-bit Windows
 and Linux. OpenJoan rebuilt the game function by function as its own executable on SDL3,

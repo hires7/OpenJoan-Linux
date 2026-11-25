@@ -1,0 +1,25 @@
+{
+  "version": 4,
+  "configurations": [
+    {
+      "name": "Linux Debug",
+      "configurationProvider": "ms-vscode.cmake-tools",
+      "compileCommands": [
+        "${workspaceFolder}/build/vscode-linux-debug/compile_commands.json"
+      ],
+      "compilerPath": "/usr/bin/c++",
+      "cppStandard": "c++20",
+      "intelliSenseMode": "linux-gcc-x64"
+    },
+    {
+      "name": "Linux Release",
+      "configurationProvider": "ms-vscode.cmake-tools",
+      "compileCommands": [
+        "${workspaceFolder}/build/vscode-linux-release/compile_commands.json"
+      ],
+      "compilerPath": "/usr/bin/c++",
+      "cppStandard": "c++20",
+      "intelliSenseMode": "linux-gcc-x64"
+    }
+  ]
+}

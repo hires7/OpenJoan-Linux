@@ -2,10 +2,26 @@
 /build/
 /out/
 .vs/
-.vscode/
+.vscode/*
+!/.vscode/build_and_stage.py
+!/.vscode/c_cpp_properties.json
+!/.vscode/extensions.json
+!/.vscode/launch.json
+!/.vscode/settings.json
+!/.vscode/tasks.json
+CMakeUserPresets.json
 *.user
 compile_commands.json
 __pycache__/
+
+# Local game data, staged runtimes, caches, and saves
+/play/
+/run/
+/test-cache/
+/third-party-source/
+/SAVE/
+/openjoan.ini
+/openjoan
 
 # never commit original game files, assets or binaries (the executable's static data is committed as typed
 # source: src/data/README.md)

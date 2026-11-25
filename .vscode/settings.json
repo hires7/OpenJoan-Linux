@@ -1,0 +1,16 @@
+{
+  "cmake.sourceDirectory": "${workspaceFolder}",
+  "cmake.useCMakePresets": "always",
+  "cmake.configureOnOpen": false,
+  "search.exclude": {
+    "play/**": true,
+    "run/**": true,
+    "build/**": true,
+    "third-party-source/**": true
+  },
+  "files.watcherExclude": {
+    "play/**": true,
+    "run/**": true,
+    "third-party-source/**": true
+  }
+}

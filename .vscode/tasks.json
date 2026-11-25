@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "OpenJoan: Build and stage Debug",
+      "type": "process",
+      "command": "python3",
+      "args": ["${workspaceFolder}/.vscode/build_and_stage.py", "debug"],
+      "problemMatcher": "$gcc",
+      "group": { "kind": "build", "isDefault": true }
+    },
+    {
+      "label": "OpenJoan: Build and stage Release",
+      "type": "process",
+      "command": "python3",
+      "args": ["${workspaceFolder}/.vscode/build_and_stage.py", "release"],
+      "problemMatcher": "$gcc",
+      "group": "build"
+    },
+    {
+      "label": "OpenJoan: Build asset tools",
+      "type": "process",
+      "command": "python3",
+      "args": ["${workspaceFolder}/.vscode/build_and_stage.py", "tools"],
+      "problemMatcher": "$gcc",
+      "group": "build"
+    }
+  ]
+}
